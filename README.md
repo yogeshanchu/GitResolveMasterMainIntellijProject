@@ -1,25 +1,10 @@
-local has Repo ABC and has files.
-Commits are already checked in master branch
+Readme.md original
 
-remote has Repo ABC created after the local repo
-has files and default branch is "main"
+This repo is just a test to resolve the master vs main branch issue in Git. 
+Github creates the default branch as main, whereas intellij / git adds master as the default branch. This means you cannot really merge these two as they are different orgin commit histories. i.e. one is not branched off from the other
 
-Master branch was pushed to remote, so it was created as a separate branch.
+The step missing on the internet is that you need to checkout the main branch after you have deleted the master (step 3 below). And then rebase your local branch onto origin / main
 
-How to now push master changes to main on remote, delete master. Also take in any changes done on main on remote repo into local repo
-
-
-#check or checkout master branch
-git branch -a
-git checkout master
-#rename master to main
-git -m main
-#rename symoblic refs (git HEAD file refs) to main typically automatically done on rename
-git symbolic-ref HEAD refs/heads/main
-#get all remote online changes from remote (origin) main branch on to local main
-git pull --rebase origin main
+git branch -m master main
 git push -u origin main
-git push https://github.com/yogeshanchu/ABC.git --delete master
-
-#in case your branch was based off master and master was deleted
-git branch --unset-upstream
+git push origin --delete master
